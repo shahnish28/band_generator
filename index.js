@@ -4,24 +4,20 @@ import bodyParser from "body-parser";
 const app = express();
 const port = 3000;
 
-//Step 3 - Make the styling show up.
-//Hint 1: CSS files are static files!
-//Hint 2: The header and footer are partials.
-//Hint 3: Add the CSS link in header.ejs
-
-//Step 4 - Add a dynamic year to the footer.
-//Hint: Google to find out how to get the current year using JS.
-
+app.use(express.static("public"));
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.get("/", (req, res) => {
-  res.render("index.ejs");
+  res.render("index1.ejs");
 });
 
 app.post("/submit", (req, res) => {
-  const randomadj = adj[Math.floor(Math.random() * adj.length)];
+  const randomAdj = adj[Math.floor(Math.random() * adj.length)];
   const randomNoun = noun[Math.floor(Math.random() * noun.length)];
-  res.render("index.ejs", { adjective: randomadj, noun: randomNoun });
+  res.render("index1.ejs", {
+    adjective: randomAdj,
+    noun: randomNoun,
+  });
 });
 
 app.listen(port, () => {
